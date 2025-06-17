@@ -4,7 +4,7 @@
 
 int main(void)
 {
-  char *input = "Home sweet home. No place like home";
+  char *input = "Jscriptural";
 
   size_t encode_len = base64_encode_len(input);
   char output[encode_len+1];

@@ -41,29 +41,34 @@ char *base64_encode(const char *input, char *output, size_t output_len)
     buf[count++] = input[i];
     if(count == 3)
     {
-      temp[current_index++] = charAt(buf[0]>>2);
-      temp[current_index++] = charAt(((buf[0] & 03) << 4) | (buf[1] >> 4));
-      temp[current_index++] = charAt(((buf[1] & 017) << 2) | (buf[2] >> 6));
-      temp[current_index++] = charAt(buf[2] & 077);
+      temp[current_index] = charAt(buf[0]>>2);
+      temp[current_index+1] = charAt(((buf[0] & 03) << 4) | (buf[1] >> 4));
+      temp[current_index+2] = charAt(((buf[1] & 017) << 2) | (buf[2] >> 6));
+      temp[current_index+3] = charAt(buf[2] & 077);
 
+      current_index += 4;
       count = 0;
     }
   }
 
     if(count == 1)
     {
-      temp[current_index++] = charAt(buf[0] >> 2);
-      temp[current_index++] = charAt(((buf[0] & 03) << 4));
-      temp[current_index++] = '=';
-      temp[current_index++] = '=';
+      temp[current_index] = charAt(buf[0] >> 2);
+      temp[current_index+1] = charAt(((buf[0] & 03) << 4));
+      temp[current_index+2] = '=';
+      temp[current_index+3] = '=';
+
+      current_index += 4;
     }
 
     if(count == 2)
     {
-      temp[current_index++] = charAt(buf[0] >> 2);
-      temp[current_index++] = charAt(((buf[0] & 03) << 4) | (buf[1] >> 4));
-      temp[current_index++] = charAt((buf[1] & 017) << 2);
-      temp[current_index++] = '=';
+      temp[current_index] = charAt(buf[0] >> 2);
+      temp[current_index+1] = charAt(((buf[0] & 03) << 4) | (buf[1] >> 4));
+      temp[current_index+2] = charAt((buf[1] & 017) << 2);
+      temp[current_index+3] = '=';
+
+      current_index += 4;
     }
 
     if(output)
