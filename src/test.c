@@ -4,16 +4,19 @@
 
 int main(void)
 {
-  char *input = "Jscriptural";
+  char input[] = "Jhon";
+  size_t decode_len = base64_decode_len(input);
+   char output[decode_len + 1];
+  if(base64_decode(input,output, decode_len+1) == NULL)
+  {
+    perror("base64");
+    return -1;
+  }
 
-  size_t encode_len = base64_encode_len(input);
-  char output[encode_len+1];
-
-  base64_encode(input,output,encode_len+1);
-
-  printf("encode_len: %zu\n", encode_len);
+  printf("decod_len: %zu\n", decode_len);
   printf("input: %s\n", input);
-  printf("output: %s\n", output);
+  printf("decode output: %s\n", output);
+
 
   return 0;
 }
