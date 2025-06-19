@@ -153,10 +153,6 @@ char *base64_encode(const char *input, char *output, size_t output_len)
 
 
 
-
-
-
-
 char *base64_decode(const char *input, char *output, size_t output_len)
 {
   size_t current_index = 0;
@@ -192,12 +188,6 @@ char *base64_decode(const char *input, char *output, size_t output_len)
       if(buf[2] != 64)
       {
 	temp[current_index++] = (((buf[1] & 017) << 4) | (buf[2] >> 2));
-      }
-      else
-      {
-	temp[current_index++] = ((buf[1] & 017) << 4);
-
-	break;
       }
       
       if(buf[3] != 64)

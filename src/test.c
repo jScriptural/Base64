@@ -4,7 +4,8 @@
 
 int main(void)
 {
-  char input[] = "Jhon";
+  char input[] = "VG8gQyBvciBub3QgdG8gQw==";
+
   size_t decode_len = base64_decode_len(input);
    char output[decode_len + 1];
   if(base64_decode(input,output, decode_len+1) == NULL)
